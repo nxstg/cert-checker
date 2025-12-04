@@ -1,0 +1,67 @@
+# SSL証明書チェッカー設定ファイル
+# このファイルをコピーして config.yaml として使用してください
+# cp config.yaml.example config.yaml
+
+# 監視対象サイト
+sites:
+  - url: www.google.com
+    port: 443
+    name: "Google"
+  - url: www.github.com
+    port: 443
+    name: "GitHub"
+  - url: www.example.com
+    port: 443
+    name: "Example Site"
+
+# アラート設定
+alert:
+  # 証明書の有効期限が残りこの日数以下の場合に警告
+  warning_days: 30
+  # 重大な警告を出す日数
+  critical_days: 7
+
+# メール設定
+email:
+  # メール送信を有効にする
+  enabled: false
+  
+  # SMTPサーバー設定
+  smtp:
+    host: "smtp.example.com"
+    port: 465
+    use_ssl: true  # SSL接続を使用（ポート465）
+    use_tls: false  # STARTTLSは使用しない（ポート587の場合はtrueに設定）
+    # 認証が必要な場合
+    username: "your-email@example.com"
+    password: "your-password"
+  
+  # 送信元アドレス
+  from: "cert-checker@example.com"
+  
+  # 送信先アドレス（複数指定可能）
+  to:
+    - "admin@example.com"
+  
+  # 件名
+  subject: "SSL証明書有効期限チェック結果"
+
+# Discord通知設定
+discord:
+  # Discord通知を有効にする
+  enabled: false
+  # Discord Webhook URL
+  webhook_url: "https://discord.com/api/webhooks/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN"
+  # 通知するステータス（OK, WARNING, CRITICAL, ERROR のいずれかまたは複数）
+  # 空の場合は全てのステータスで通知
+  notify_on:
+    - "WARNING"
+    - "CRITICAL"
+    - "ERROR"
+
+# ログ設定
+logging:
+  # ログレベル: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  level: INFO
+  # ログファイルのパス（空文字列の場合は標準出力のみ）
+  file: "cert_checker.log"

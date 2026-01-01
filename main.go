@@ -127,10 +127,10 @@ func main() {
 
 	Logger.Println("SSL証明書チェッカーを終了します")
 
-	// 問題があるサイトがある場合は終了コード1
+	// CRITICALまたはERRORがある場合は終了コード1、WARNINGの場合は終了コード0
 	hasIssues := false
 	for _, result := range results {
-		if result.Status == "WARNING" || result.Status == "CRITICAL" || result.Status == "ERROR" {
+		if result.Status == "CRITICAL" || result.Status == "ERROR" {
 			hasIssues = true
 			break
 		}

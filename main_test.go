@@ -280,10 +280,10 @@ func TestCertInfoStatusDetermination(t *testing.T) {
 	config.Alert.CriticalDays = 7
 
 	testCases := []struct {
-		name             string
-		daysRemaining    int
-		expectedStatus   string
-		notAfter         time.Time
+		name           string
+		daysRemaining  int
+		expectedStatus string
+		notAfter       time.Time
 	}{
 		{
 			name:           "OK状態（60日残り）",
@@ -750,11 +750,11 @@ func TestSendDiscordNotificationNoFilter(t *testing.T) {
 			DaysRemaining: 60,
 		},
 		{
-			SiteName:      "Test Site 2",
-			URL:           "test2.com",
-			Port:          443,
-			Status:        "ERROR",
-			ErrorMessage:  "Connection failed",
+			SiteName:     "Test Site 2",
+			URL:          "test2.com",
+			Port:         443,
+			Status:       "ERROR",
+			ErrorMessage: "Connection failed",
 		},
 	}
 
